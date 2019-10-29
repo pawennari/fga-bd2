@@ -1,0 +1,28 @@
+#fetch public figure tweet from 22-23oct
+
+import tweepy 
+import datetime
+import csv
+from tweepy import OAuthHandler, Stream, StreamListener
+
+consumer_key=""
+consumer_secret=""
+access_token=""
+access_token_secret=""
+auth = OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+api = tweepy.API(auth)
+
+the_list = []
+tweet_nya = api.user_timeline(screen_name='ivanlanin', count=200,tweet_mode="extended")
+startDate = datetime.datetime(2019, 10, 22, 12, 00, 00)
+endDate = datetime.datetime(2019, 10, 23, 13, 00, 00)
+
+for tweet in tweet_nya:
+    if tweet.created_at < endDate and tweet.created_at > startDate:
+        the_list.append(tweet._json)
+        
+        
+	import pandas
+myData = pandas.DataFrame(the_list)
+myData
