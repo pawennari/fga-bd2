@@ -13,7 +13,7 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 
-#ini untuk ekstrak (get) data dari twitter using tweepy and save to csv file
+#ini untuk ekstrak (get) data dari twitter using tweepy and save to csv file (extracting session)
 the_ls = []
 csvFile = open('hashtag.csv', 'a')
 csvWriter = csv.writer(csvFile)
@@ -21,3 +21,8 @@ csvWriter = csv.writer(csvFile)
 for tweet in tweepy.Cursor(api.search,q = "#menteri",count=100,lang="id",since_id="2019-10-23").items():
     the_ls.append(tweet._json)
     csvWriter.writerow(tweet._json)
+
+#=================================================================================================================
+
+#ini untuk transform and clean the data, removing unnecessary column (transform session)
+
